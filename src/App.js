@@ -31,7 +31,7 @@ const App =()=>{
           <NavBar />
           <Routes>
             <Route exact path="/" element={<News apikey={apikey} setProgress={setProgress} key="general" pageSize={pageSize} country="us" category="general" />} />
-            <Route exact path="/business" element={<News apikey={apikey} setProgress={setProgress} key="buisness" pageSize={pageSize} country="us" category="business" />} />
+            
             <Route exact path="/entertainment" element={<News apikey={apikey} setProgress={setProgress} key="entertainment" pageSize={pageSize} country="us" category="entertainment" />} />
             <Route exact path="/general" element={<News apikey={apikey} setProgress={setProgress} key="general" pageSize={pageSize} country="us" category="general" />} />
             <Route exact path="/health" element={<News apikey={apikey} setProgress={setProgress} key="health" pageSize={pageSize} country="us" category="health" />} />

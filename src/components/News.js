@@ -20,6 +20,7 @@ const News = (props) => {
     try {
       setProgress(10);
       const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apikey}&page=${page}&pagesize=${pageSize}`;
+	  
       setLoading(true);
       const data = await fetch(url);
       setProgress(30);
@@ -46,7 +47,7 @@ const News = (props) => {
 
 const fetchMoreData = async () => {
     const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apikey}&page=${page+1}&pagesize=${pageSize}`;
-    setPage(page+1);
+	  setPage((prevPage) => prevPage + 1);
     const data = await fetch(url);
     const parsedData = await data.json();
     setArticles((prevArticles) => prevArticles.concat(parsedData.articles || []));
@@ -60,7 +61,7 @@ const fetchMoreData = async () => {
         NewsToday - Top {capitalizeFirstLetter(category)} Headlines
       </h2>
 
-      {/* Show spinner only on first load */}
+    
       {loading && <Spinner />}
 
       <InfiniteScroll
@@ -78,7 +79,7 @@ const fetchMoreData = async () => {
                   description={ele.description ? ele.description.slice(0, 85) : "No Description"}
                   imageUrl={ele.urlToImage || 'https://via.placeholder.com/150'}
                   newsUrl={ele.url}
-                  author={ele.author.slice(0,11) || 'Unknown'}
+                  author={ele.author ? ele.author.slice(0, 11) : 'Unknown'}
                   date={ele.publishedAt}
                   source={ele.source.name}
                 />
